@@ -3,6 +3,14 @@ import { useState, useEffect } from 'react';
 function Board() {
   const cards = ['Lion', 'Cow', 'Snake', 'Lizard'];
 
+  function shuffle(array) {
+    const shuffledArray = [...array];
+    shuffledArray.sort(() => Math.random() - 0.5);
+    return shuffledArray;
+  }
+
+  const shuffledCards = shuffle(cards);
+
   const [count, setCount] = useState(0);
   const [maxCount, setMaxCount] = useState(0);
   const [clickedCards, setClickedCards] = useState([]);
@@ -43,7 +51,7 @@ function Board() {
       <div>
         <h1>Cards: </h1>
         <ul>
-          {cards.map((card) => {
+          {shuffledCards.map((card) => {
             return (
               <li key={card} onClick={() => clickCard(card)}>
                 {card}
