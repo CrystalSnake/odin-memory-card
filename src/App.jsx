@@ -3,24 +3,17 @@ import './App.css';
 import Board from './Board';
 
 function App() {
-  let [game, setGame] = useState(false);
+  const [game, setGame] = useState(false);
+
   const startHandler = () => {
-    game = true;
-    setGame(game);
+    const gameStatus = true;
+    setGame(gameStatus);
   };
 
-  if (game) {
-    return (
-      <>
-        <h1>Memory Card Game</h1>
-        <Board />
-      </>
-    );
-  }
   return (
     <>
       <h1>Memory Card Game</h1>
-      <button onClick={startHandler}>Start</button>
+      {game ? <Board /> : <button onClick={startHandler}>Start</button>}
     </>
   );
 }

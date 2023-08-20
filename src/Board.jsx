@@ -10,6 +10,7 @@ function Board() {
   }
 
   const shuffledCards = shuffle(cards);
+  const [gameStatus, setGameStatus] = useState(null);
 
   const [count, setCount] = useState(0);
   const [maxCount, setMaxCount] = useState(0);
@@ -29,7 +30,8 @@ function Board() {
 
   const clickCard = (card) => {
     if (clickedCards.includes(card)) {
-      console.log('Game Over');
+      const newGameStatus = 'lose';
+      setGameStatus(newGameStatus);
     } else {
       addCount(card);
     }
@@ -37,19 +39,25 @@ function Board() {
 
   useEffect(() => {
     if (clickedCards.length === cards.length) {
-      console.log('Win!');
+      const newGameStatus = 'win';
+      setGameStatus(newGameStatus);
       const newCount = 0;
       setCount(newCount);
     }
   }, [clickedCards.length, cards.length]);
 
+  const resetGame = () => {
+    setClickedCards([]);
+    setGameStatus(null);
+  };
+
   return (
     <>
       <p>
-        Count: {count}, Max count {maxCount}
+        Count: {count}, Max count: {maxCount}
       </p>
       <div>
-        <h1>Cards: </h1>
+        <h1>Cards:</h1>
         <ul>
           {shuffledCards.map((card) => {
             return (
@@ -60,6 +68,12 @@ function Board() {
           })}
         </ul>
       </div>
+      {gameStatus && (
+        <div className="popup">
+          <h2>{gameStatus === 'win' ? 'You Win!' : 'Game Over!'}</h2>
+          <button onClick={resetGame}>Play Again</button>
+        </div>
+      )}
     </>
   );
 }
