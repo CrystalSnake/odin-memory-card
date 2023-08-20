@@ -3,13 +3,26 @@
   margin: 0 auto;
   padding: 0, 2rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-board {
   display: grid;
-  grid-template-rows: 200px 200px;
-  grid-template-columns: 200px 200px;
   gap: 1em;
+  margin: auto;
+}
+
+.card-board.small {
+  grid-template-columns: repeat(2, min-content);
+}
+
+.card-board.normal {
+  grid-template-columns: repeat(3, min-content);
+}
+
+.card-board.big {
+  grid-template-columns: repeat(5, min-content);
 }
 
 .card {

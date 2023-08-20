@@ -1,20 +1,20 @@
 import { useState, useEffect } from 'react';
 import getGifs from './GetCards';
 
-function Board() {
+function Board(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
     async function makeCardList() {
       try {
-        const links = await getGifs();
+        const links = await getGifs(props.n);
         setCards(links);
       } catch (error) {
         console.error('Error:', error);
       }
     }
     makeCardList();
-  }, []);
+  }, [props.n]);
 
   function shuffle(array) {
     const shuffledArray = [...array];
@@ -52,7 +52,7 @@ function Board() {
   };
 
   useEffect(() => {
-    if (clickedCards.length === cards.length) {
+    if (cards.length > 0 && clickedCards.length === cards.length) {
       const newGameStatus = 'win';
       setGameStatus(newGameStatus);
       const newCount = 0;
@@ -71,7 +71,7 @@ function Board() {
         Count: {count}, Max count: {maxCount}
       </p>
       <h2>Select card:</h2>
-      <div className="card-board">
+      <div className={'card-board' + ' ' + props.className}>
         {shuffledCards.map((card) => {
           return (
             <div className="card" key={card}>
