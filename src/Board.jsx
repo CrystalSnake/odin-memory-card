@@ -45,6 +45,7 @@ function Board(props) {
     if (clickedCards.includes(card) && gameStatus == null) {
       const newGameStatus = 'lose';
       setGameStatus(newGameStatus);
+      return;
     }
     if (gameStatus === null) {
       addCount(card);
