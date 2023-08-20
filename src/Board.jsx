@@ -70,7 +70,7 @@ function Board(props) {
       <p>
         Count: {count}, Max count: {maxCount}
       </p>
-      <h2>Select card:</h2>
+      <h2>Select card without repeats:</h2>
       <div className={'card-board' + ' ' + props.className}>
         {shuffledCards.map((card) => {
           return (
@@ -88,6 +88,7 @@ function Board(props) {
         <div className="popup">
           <h2>{gameStatus === 'win' ? 'You Win!' : 'Game Over!'}</h2>
           <button onClick={resetGame}>Play Again</button>
+          <button onClick={props.exit}>Exit</button>
         </div>
       )}
     </>

@@ -29,11 +29,20 @@ function App() {
     setGame(gameStatus);
   };
 
+  const exitHandler = () => {
+    const gameStatus = false;
+    setGame(gameStatus);
+  };
+
   return (
     <>
       <h1>Memory Card Game</h1>
       {game ? (
-        <Board n={difficulty.n} className={difficulty.class} />
+        <Board
+          n={difficulty.n}
+          className={difficulty.class}
+          exit={exitHandler}
+        />
       ) : (
         <>
           <button onClick={startHandler}>Start</button>
