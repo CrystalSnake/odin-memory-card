@@ -40,3 +40,30 @@
 button {
   margin: 0.5em 1em;
 }
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.popup.show {
+  opacity: 1;
+}
+
+.popup h2 {
+  margin-top: 0;
+}
+
+.popup button {
+  margin-top: 10px;
+}

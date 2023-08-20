@@ -65,6 +65,20 @@ function Board(props) {
     setGameStatus(null);
   };
 
+  const [popupVisible, setPopupVisible] = useState(false);
+
+  useEffect(() => {
+    if (gameStatus === 'win' || gameStatus === 'lose') {
+      const timeout = setTimeout(() => {
+        setPopupVisible(true);
+      }, 10);
+
+      return () => clearTimeout(timeout);
+    } else {
+      setPopupVisible(false);
+    }
+  }, [gameStatus]);
+
   return (
     <>
       <p>
@@ -85,7 +99,7 @@ function Board(props) {
         })}
       </div>
       {gameStatus && (
-        <div className="popup">
+        <div className={`popup ${popupVisible ? 'show' : ''}`}>
           <h2>{gameStatus === 'win' ? 'You Win!' : 'Game Over!'}</h2>
           <button onClick={resetGame}>Play Again</button>
           <button onClick={props.exit}>Exit</button>
