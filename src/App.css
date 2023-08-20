@@ -1,10 +1,28 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0, 2rem;
   text-align: center;
 }
 
+.card-board {
+  display: grid;
+  grid-template-rows: 200px 200px;
+  grid-template-columns: 200px 200px;
+  gap: 1em;
+}
+
+.card {
+  width: 200px; /* adjust the width of the card div as needed */
+  height: 200px; /* adjust the height of the card div as needed */
+  overflow: hidden;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 /* .logo {
   height: 6em;
   padding: 1.5em;

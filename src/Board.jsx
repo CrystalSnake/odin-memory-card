@@ -1,7 +1,20 @@
 import { useState, useEffect } from 'react';
+import getGifs from './GetCards';
 
 function Board() {
-  const cards = ['Lion', 'Cow', 'Snake', 'Lizard'];
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    async function makeCardList() {
+      try {
+        const links = await getGifs();
+        setCards(links);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+    makeCardList();
+  }, []);
 
   function shuffle(array) {
     const shuffledArray = [...array];
@@ -29,10 +42,11 @@ function Board() {
   };
 
   const clickCard = (card) => {
-    if (clickedCards.includes(card)) {
+    if (clickedCards.includes(card) && gameStatus == null) {
       const newGameStatus = 'lose';
       setGameStatus(newGameStatus);
-    } else {
+    }
+    if (gameStatus === null) {
       addCount(card);
     }
   };
@@ -56,17 +70,19 @@ function Board() {
       <p>
         Count: {count}, Max count: {maxCount}
       </p>
-      <div>
-        <h1>Cards:</h1>
-        <ul>
-          {shuffledCards.map((card) => {
-            return (
-              <li key={card} onClick={() => clickCard(card)}>
-                {card}
-              </li>
-            );
-          })}
-        </ul>
+      <h2>Select card:</h2>
+      <div className="card-board">
+        {shuffledCards.map((card) => {
+          return (
+            <div className="card" key={card}>
+              <img
+                className="card-image"
+                src={card}
+                onClick={() => clickCard(card)}
+              />
+            </div>
+          );
+        })}
       </div>
       {gameStatus && (
         <div className="popup">
