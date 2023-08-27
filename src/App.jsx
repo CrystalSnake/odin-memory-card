@@ -55,7 +55,7 @@ function App() {
       )}
       <footer>
         <p>
-          Copyright © 2022{' '}
+          Copyright © 2023{' '}
           <a href="https://github.com/CrystalSnake">CrystalSnake</a>
         </p>
       </footer>
