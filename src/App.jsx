@@ -5,7 +5,7 @@ import Board from './Board';
 const difficulties = [
   { name: 'Easy', n: 4, class: 'small' },
   { name: 'Normal', n: 9, class: 'normal' },
-  { name: 'Hard', n: 15, class: 'big' },
+  { name: 'Hard', n: 16, class: 'big' },
 ];
 
 function App() {
@@ -36,7 +36,9 @@ function App() {
 
   return (
     <>
-      <h1>Memory Card Game</h1>
+      <header>
+        <h1>Memory Card Game</h1>
+      </header>
       {game ? (
         <Board
           n={difficulty.n}
@@ -45,10 +47,18 @@ function App() {
         />
       ) : (
         <>
-          <button onClick={startHandler}>Start</button>
-          <button onClick={changeDiff}>{difficulty.name}</button>
+          <div className="start-buttons">
+            <button onClick={startHandler}>Start</button>
+            <button onClick={changeDiff}>{difficulty.name}</button>
+          </div>
         </>
       )}
+      <footer>
+        <p>
+          Copyright © 2022{' '}
+          <a href="https://github.com/CrystalSnake">CrystalSnake</a>
+        </p>
+      </footer>
     </>
   );
 }
